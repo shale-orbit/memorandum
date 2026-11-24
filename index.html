@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>备忘录 Memorandum · Flutter 本地备忘录</title>
+<style>
+  :root{
+    --blue:#3b82f6;
+    --blue-dark:#2563eb;
+    --ink:#0f172a;
+    --muted:#64748b;
+    --line:#e2e8f0;
+    --bg:#f8fafc;
+    --card:#ffffff;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1080px;margin:0 auto;padding:0 20px;}
+  header{
+    background:linear-gradient(160deg,#eff6ff 0%,#f8fafc 60%,#f8fafc 100%);
+    padding:72px 0 56px;
+    text-align:center;
+    border-bottom:1px solid var(--line);
+  }
+  .badge{
+    display:inline-block;
+    font-size:12px;
+    color:var(--blue-dark);
+    background:#dbeafe;
+    border-radius:999px;
+    padding:4px 12px;
+    margin-bottom:18px;
+    letter-spacing:.5px;
+  }
+  h1{font-size:42px;line-height:1.25;letter-spacing:-.5px;}
+  h1 span{color:var(--blue);}
+  .sub{color:var(--muted);font-size:17px;max-width:620px;margin:16px auto 0;}
+  .actions{margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border-radius:10px;
+    font-size:15px;font-weight:600;text-decoration:none;
+    transition:.2s;
+  }
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 6px 16px rgba(59,130,246,.28);}
+  .btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn-ghost:hover{border-color:#cbd5e1;transform:translateY(-1px);}
+  section{padding:64px 0;}
+  h2{font-size:26px;text-align:center;margin-bottom:8px;letter-spacing:-.3px;}
+  .section-sub{text-align:center;color:var(--muted);font-size:15px;margin-bottom:36px;}
+  .grid{display:grid;gap:20px;}
+  .features{grid-template-columns:repeat(4,1fr);}
+  .feature{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:22px;transition:.2s;
+  }
+  .feature:hover{transform:translateY(-3px);box-shadow:0 12px 24px rgba(15,23,42,.06);}
+  .feature .ico{
+    width:38px;height:38px;border-radius:10px;background:#eff6ff;
+    display:flex;align-items:center;justify-content:center;
+    color:var(--blue);font-size:18px;margin-bottom:14px;
+  }
+  .feature h3{font-size:15px;margin-bottom:6px;}
+  .feature p{font-size:13px;color:var(--muted);line-height:1.6;}
+  .shots{grid-template-columns:repeat(3,1fr);}
+  .shot{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:12px;transition:.2s;
+  }
+  .shot:hover{transform:translateY(-4px);box-shadow:0 16px 32px rgba(15,23,42,.08);}
+  .shot img{width:100%;display:block;border-radius:10px;background:#f1f5f9;}
+  .shot .cap{padding:12px 6px 6px;text-align:center;}
+  .shot .cap b{font-size:14px;display:block;}
+  .shot .cap span{font-size:12px;color:var(--muted);}
+  .tech{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    padding:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
+  }
+  .tech div{text-align:center;}
+  .tech b{display:block;font-size:14px;margin-bottom:4px;}
+  .tech span{font-size:12px;color:var(--muted);}
+  footer{
+    border-top:1px solid var(--line);padding:32px 0;text-align:center;
+    color:var(--muted);font-size:13px;
+  }
+  footer a{color:var(--blue-dark);text-decoration:none;}
+  @media(max-width:880px){
+    .features,.shots,.tech{grid-template-columns:repeat(2,1fr);}
+    h1{font-size:32px;}
+    section{padding:48px 0;}
+  }
+  @media(max-width:520px){
+    .features,.shots,.tech{grid-template-columns:1fr;}
+    header{padding:52px 0 40px;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="badge">Flutter · Android · 纯本地存储</div>
+    <h1>备忘录 <span>Memorandum</span></h1>
+    <p class="sub">一个纯前端的个人备忘录 App。无后端、无网络请求，笔记、分类、图片与设置全部保存在设备本地。</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="https://github.com/shale-orbit/memorandum/releases/latest">下载 APK</a>
+      <a class="btn btn-ghost" href="https://github.com/shale-orbit/memorandum">查看源码</a>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>核心功能</h2>
+    <p class="section-sub">覆盖日常记录所需的完整闭环</p>
+    <div class="grid features">
+      <div class="feature">
+        <div class="ico">✎</div>
+        <h3>笔记管理</h3>
+        <p>新建、编辑、删除，支持标题、正文、分类、收藏与完整时间记录。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">▣</div>
+        <h3>插入图片</h3>
+        <p>从相册选图，保存到 App 私有目录，删除笔记时自动清理。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">⌕</div>
+        <h3>搜索与筛选</h3>
+        <p>同时匹配标题与正文，输入防抖；按分类快速筛选。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">♥</div>
+        <h3>收藏与分类</h3>
+        <p>收藏独立汇总；分类支持新建、重命名、删除，删除后笔记移入未分类。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">☾</div>
+        <h3>深色模式</h3>
+        <p>一键切换全局深色主题，重启后保持。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">⌘</div>
+        <h3>长按快捷菜单</h3>
+        <p>长按卡片即可收藏、删除或修改所属分类。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">⚿</div>
+        <h3>密码锁</h3>
+        <p>开启后每次进入 App 需解锁，密码加密存储，不落明文。</p>
+      </div>
+      <div class="feature">
+        <div class="ico">⧉</div>
+        <h3>复制正文</h3>
+        <p>一键把笔记正文复制到剪贴板。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <h2>真机演示</h2>
+    <p class="section-sub">以下截图均来自 Android 真机运行效果</p>
+    <div class="grid shots">
+      <div class="shot">
+        <img src="images/home.jpg" alt="笔记首页">
+        <div class="cap"><b>笔记首页</b><span>搜索 / 分类筛选 / 卡片列表</span></div>
+      </div>
+      <div class="shot">
+        <img src="images/note-edit.jpg" alt="新建笔记">
+        <div class="cap"><b>新建笔记</b><span>标题 / 正文 / 图片 / 分类</span></div>
+      </div>
+      <div class="shot">
+        <img src="images/categories.jpg" alt="分类与标签">
+        <div class="cap"><b>分类与标签</b><span>数量统计 / 重命名 / 删除</span></div>
+      </div>
+      <div class="shot">
+        <img src="images/favorites.jpg" alt="收藏列表">
+        <div class="cap"><b>收藏列表</b><span>单独汇总收藏笔记</span></div>
+      </div>
+      <div class="shot">
+        <img src="images/dark-mode.jpg" alt="深色模式">
+        <div class="cap"><b>深色模式</b><span>全局深色主题</span></div>
+      </div>
+      <div class="shot">
+        <img src="images/set-password.jpg" alt="设置密码">
+        <div class="cap"><b>设置密码</b><span>长度与字符校验</span></div>
+      </div>
+      <div class="shot">
+        <img src="images/lock-screen.jpg" alt="密码锁">
+        <div class="cap"><b>密码锁</b><span>进入 App 需解锁</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>技术栈</h2>
+    <p class="section-sub">Flutter + 三种本地存储，各司其职</p>
+    <div class="tech">
+      <div><b>Flutter / Dart</b><span>跨平台 UI</span></div>
+      <div><b>sqflite</b><span>笔记 / 分类</span></div>
+      <div><b>shared_preferences</b><span>设置开关</span></div>
+      <div><b>flutter_secure_storage</b><span>密码加密</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    备忘录 Memorandum · 纯本地 Android 应用 ·
+    <a href="https://github.com/shale-orbit/memorandum">GitHub 仓库</a>
+  </div>
+</footer>
+
+</body>
+</html>

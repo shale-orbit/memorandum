@@ -10,21 +10,13 @@
 
 以下截图均来自 Android 真机运行效果。
 
-<table>
-  <tr>
-    <td align="center"><img src="images/首页.jpg" width="230"/><br/><b>笔记首页</b><br/>搜索 / 分类筛选 / 卡片列表</td>
-    <td align="center"><img src="images/新建笔记.jpg" width="230"/><br/><b>新建笔记</b><br/>标题 / 正文 / 图片 / 分类</td>
-    <td align="center"><img src="images/分类页.jpg" width="230"/><br/><b>分类与标签</b><br/>数量统计 / 重命名 / 删除</td>
-  </tr>
-  <tr>
-    <td align="center"><img src="images/收藏页.jpg" width="230"/><br/><b>收藏列表</b><br/>单独汇总收藏笔记</td>
-    <td align="center"><img src="images/深色模式.jpg" width="230"/><br/><b>深色模式</b><br/>全局深色主题</td>
-    <td align="center"><img src="images/设置密码.jpg" width="230"/><br/><b>设置密码</b><br/>长度与字符校验</td>
-  </tr>
-  <tr>
-    <td align="center" colspan="3"><img src="images/密码锁.jpg" width="230"/><br/><b>密码锁</b><br/>开启后进入 App 需解锁</td>
-  </tr>
-</table>
+| <img src="images/home.jpg" width="220"/> | <img src="images/note-edit.jpg" width="220"/> | <img src="images/categories.jpg" width="220"/> |
+| :---: | :---: | :---: |
+| **笔记首页**<br/>搜索 / 分类筛选 / 卡片列表 | **新建笔记**<br/>标题 / 正文 / 图片 / 分类 | **分类与标签**<br/>数量统计 / 重命名 / 删除 |
+| <img src="images/favorites.jpg" width="220"/> | <img src="images/dark-mode.jpg" width="220"/> | <img src="images/set-password.jpg" width="220"/> |
+| **收藏列表**<br/>单独汇总收藏笔记 | **深色模式**<br/>全局深色主题 | **设置密码**<br/>长度与字符校验 |
+| <img src="images/lock-screen.jpg" width="220"/> | | |
+| **密码锁**<br/>开启后进入 App 需解锁 | | |
 
 ---
 
