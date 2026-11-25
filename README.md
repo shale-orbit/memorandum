@@ -6,6 +6,25 @@
 
 ---
 
+## 运行方式
+
+<img src="images/download-qr.jpg" width="200" alt="扫码下载 APK"/>
+
+手机扫描上方二维码即可下载安装包，或直接访问：
+
+- 最新版下载页：https://github.com/shale-orbit/memorandum/releases/latest
+- APK 直链：https://github.com/shale-orbit/memorandum/releases/download/v1.0.0/app-release.apk
+
+安装步骤：
+
+1. 用手机扫描二维码，下载 `app-release.apk`
+2. 若系统提示，允许「安装未知来源应用」
+3. 安装完成后打开即可使用，无需注册、无需联网
+
+> 想从源码调试运行，见文末「运行」章节。
+
+---
+
 ## 真机演示
 
 以下截图均来自 Android 真机运行效果。
@@ -17,6 +36,19 @@
 | **收藏列表**<br/>单独汇总收藏笔记 | **深色模式**<br/>全局深色主题 | **设置密码**<br/>长度与字符校验 |
 | <img src="images/lock-screen.jpg" width="220"/> | | |
 | **密码锁**<br/>开启后进入 App 需解锁 | | |
+
+---
+
+## 本地存储方式
+
+本项目为纯前端应用，无后端、无网络请求，数据全部保存在设备本地。按数据特性采用三种存储方案：
+
+| 数据类型 | 存储方案 | 说明 |
+| --- | --- | --- |
+| 笔记、分类 | `sqflite`（SQLite） | 多条结构化记录，需要条件查询、排序与事务 |
+| 设置开关 | `shared_preferences` | 深色模式、默认分类、显示修改时间、密码锁开关等少量键值配置 |
+| 密码锁密码 | `flutter_secure_storage` | 写入 Android Keystore，不落明文 |
+| 笔记图片 | App 私有目录 `note_images/` | 图片存为文件，数据库只记录路径 |
 
 ---
 
@@ -57,15 +89,6 @@
 
 - **Flutter / Dart**：跨平台 UI 与业务逻辑
 - **状态管理**：`ChangeNotifier` + `ListenableBuilder`，未引入第三方状态库
-
-### 本地存储方案
-
-| 数据 | 方案 | 说明 |
-| --- | --- | --- |
-| 笔记、分类 | `sqflite` | 结构化数据，支持条件查询、排序、事务 |
-| 设置开关 | `shared_preferences` | 少量键值配置 |
-| 密码 | `flutter_secure_storage` | 存入 Android Keystore，不落明文 |
-| 笔记图片 | App 私有目录 `note_images/` | 数据库只存文件路径 |
 
 ### 数据层设计要点
 
